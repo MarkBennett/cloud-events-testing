@@ -1,9 +1,15 @@
 import { HTTP, CloudEvent } from "cloudevents";
 
+const user = {
+  email: "bob@barker.test",
+  name: "Bob Barker",
+  id: "user-123"
+};
+
 const ce = new CloudEvent({
-  type: "CLHbid.Users.UserNew",
+  type: "com.clhbid.user.new",
   source: "auctions.clhbid.com",
-  data: { user: { email: "bob@barker.test" } },
+  data: user,
 });
 const message = HTTP.binary(ce); // Or HTTP.structured(ce)
 
