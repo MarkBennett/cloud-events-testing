@@ -11,6 +11,13 @@ const ce = new CloudEvent({
   source: "auctions.clhbid.com",
   data: user,
 });
-const message = HTTP.binary(ce); // Or HTTP.structured(ce)
 
-console.log(`message = ${JSON.stringify(message, " ", 2)}`);
+console.log(`original message = ${JSON.stringify(ce, " ", 2)}`);
+
+const encoded_message = HTTP.binary(ce); // Or HTTP.structured(ce)
+
+console.log(`encoded message = ${JSON.stringify(encoded_message, " ", 2)}`);
+
+const decoded_message = HTTP.toEvent(encoded_message);
+
+console.log(`received message = ${JSON.stringify(decoded_message, " ", 2)}`);
